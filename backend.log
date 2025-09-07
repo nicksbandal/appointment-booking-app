@@ -1,0 +1,134 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :resolveMainClassName UP-TO-DATE
+
+> Task :bootRun
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.5)
+
+2025-08-30T13:55:42.064+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] o.e.a.AppointmentBookingAppApplication   : Starting AppointmentBookingAppApplication using Java 21.0.2 with PID 6398 (/Users/nikhil.bandal/temp/Appointment-Booking-App/build/classes/java/main started by nikhil.bandal in /Users/nikhil.bandal/temp/Appointment-Booking-App)
+2025-08-30T13:55:42.065+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] o.e.a.AppointmentBookingAppApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-08-30T13:55:42.089+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-30T13:55:42.089+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-30T13:55:42.372+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-30T13:55:42.403+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 27 ms. Found 6 JPA repository interfaces.
+2025-08-30T13:55:42.656+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-30T13:55:42.664+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-30T13:55:42.664+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-08-30T13:55:42.683+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-30T13:55:42.683+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 594 ms
+2025-08-30T13:55:42.765+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-30T13:55:42.788+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.26.Final
+2025-08-30T13:55:42.802+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-30T13:55:42.934+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-30T13:55:42.948+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-30T13:55:43.030+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:clinicdb user=SA
+2025-08-30T13:55:43.031+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-30T13:55:43.043+05:30  WARN 6398 --- [Appointment-Booking-App] [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-30T13:55:43.052+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-30T13:55:43.521+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: create table appointment (id bigint generated by default as identity, date date, notes varchar(255), status varchar(255), time time(6), type varchar(255), clinic_id bigint, doctor_id bigint, patient_id bigint, primary key (id))
+Hibernate: create table clinic (id bigint generated by default as identity, address varchar(255), name varchar(255), phone varchar(255), primary key (id))
+Hibernate: create table doctors (id bigint generated by default as identity, name varchar(255), phone varchar(255), specialty varchar(255), clinic_id bigint, user_id bigint, primary key (id))
+Hibernate: create table feedback (id bigint generated by default as identity, comment varchar(255), rating integer not null, appointment_id bigint, patient_id bigint, primary key (id))
+Hibernate: create table patients (id bigint generated by default as identity, mrd varchar(255) not null, name varchar(255), phone varchar(255), user_id bigint, primary key (id))
+Hibernate: create table users (id bigint generated by default as identity, enabled boolean not null, password varchar(255) not null, role varchar(255) not null, username varchar(255) not null, primary key (id))
+Hibernate: alter table if exists doctors drop constraint if exists UKt1f6cueqyjwx5ghew9ar1exe3
+Hibernate: alter table if exists doctors add constraint UKt1f6cueqyjwx5ghew9ar1exe3 unique (user_id)
+Hibernate: alter table if exists patients drop constraint if exists UK3b8vgape0l2pyvkb7xceom4ew
+Hibernate: alter table if exists patients add constraint UK3b8vgape0l2pyvkb7xceom4ew unique (mrd)
+Hibernate: alter table if exists patients drop constraint if exists UK9tbsl3fmey0eofbm2xj69v4qs
+Hibernate: alter table if exists patients add constraint UK9tbsl3fmey0eofbm2xj69v4qs unique (user_id)
+Hibernate: alter table if exists users drop constraint if exists UKr43af9ap4edm43mmtq01oddj6
+Hibernate: alter table if exists users add constraint UKr43af9ap4edm43mmtq01oddj6 unique (username)
+Hibernate: alter table if exists appointment add constraint FKi7q7b33lue26pe9f0p9tb7j2j foreign key (clinic_id) references clinic
+Hibernate: alter table if exists appointment add constraint FK51y2ce12yp0g0hgsa39p2u9jq foreign key (doctor_id) references doctors
+Hibernate: alter table if exists appointment add constraint FK3mbue9w5cldlnxx3hm15t5sfo foreign key (patient_id) references patients
+Hibernate: alter table if exists doctors add constraint FKj9htr7qxv0tmftfjftwpyv41l foreign key (clinic_id) references clinic
+Hibernate: alter table if exists doctors add constraint FKe9pf5qtxxkdyrwibaevo9frtk foreign key (user_id) references users
+Hibernate: alter table if exists feedback add constraint FK9wfgrg1xqrkfk32mwisl37o0v foreign key (appointment_id) references appointment
+Hibernate: alter table if exists feedback add constraint FKphlqohiy7u0u2vjccah5fshh6 foreign key (patient_id) references patients
+Hibernate: alter table if exists patients add constraint FKuwca24wcd1tg6pjex8lmc0y7 foreign key (user_id) references users
+2025-08-30T13:55:43.564+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-30T13:55:43.748+05:30  WARN 6398 --- [Appointment-Booking-App] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-30T13:55:43.763+05:30  WARN 6398 --- [Appointment-Booking-App] [  restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 56ddd5a1-b134-47de-854e-db15673f691d
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-08-30T13:55:43.766+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-30T13:55:43.938+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:clinicdb'
+2025-08-30T13:55:43.992+05:30  WARN 6398 --- [Appointment-Booking-App] [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2025-08-30T13:55:44.003+05:30  WARN 6398 --- [Appointment-Booking-App] [  restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-08-30T13:55:44.004+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-30T13:55:44.007+05:30  WARN 6398 --- [Appointment-Booking-App] [  restartedMain] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-232]
+2025-08-30T13:55:44.007+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-30T13:55:44.008+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-30T13:55:44.015+05:30  INFO 6398 --- [Appointment-Booking-App] [  restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-08-30T13:55:44.022+05:30 ERROR 6398 --- [Appointment-Booking-App] [  restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+
+BUILD SUCCESSFUL in 3s
+4 actionable tasks: 1 executed, 3 up-to-date
+Exception in thread "Thread-0" org.gradle.api.UncheckedIOException: java.io.IOException: Input/output error
+	at org.gradle.internal.UncheckedException.throwAsUncheckedException(UncheckedException.java:63)
+	at org.gradle.internal.UncheckedException.throwAsUncheckedException(UncheckedException.java:42)
+	at org.gradle.internal.daemon.client.clientinput.DaemonClientInputForwarder$ForwardingUserInput.lambda$readAndForwardStdin$0(DaemonClientInputForwarder.java:99)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.io.IOException: Input/output error
+	at java.base/java.io.FileInputStream.readBytes(Native Method)
+	at java.base/java.io.FileInputStream.read(FileInputStream.java:276)
+	at java.base/java.io.BufferedInputStream.read1(BufferedInputStream.java:282)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:343)
+	at java.base/sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:287)
+	at java.base/sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:330)
+	at java.base/sun.nio.cs.StreamDecoder.read(StreamDecoder.java:190)
+	at java.base/java.io.InputStreamReader.read(InputStreamReader.java:177)
+	at java.base/java.io.BufferedReader.read1(BufferedReader.java:211)
+	at java.base/java.io.BufferedReader.read(BufferedReader.java:287)
+	at java.base/java.io.Reader.read(Reader.java:250)
+	at org.gradle.internal.daemon.client.clientinput.DaemonClientInputForwarder$ForwardingUserInput.lambda$readAndForwardStdin$0(DaemonClientInputForwarder.java:97)
+	... 3 more
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not dispatch a message to the daemon.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
