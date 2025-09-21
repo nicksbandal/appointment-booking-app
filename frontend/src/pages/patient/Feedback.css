@@ -1,0 +1,71 @@
+.feedback-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 32px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.feedback-container h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.feedback-container form > div {
+  margin-bottom: 18px;
+}
+.feedback-container label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.feedback-container input[type="number"],
+.feedback-container textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+.feedback-container textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+.feedback-container button {
+  width: 100%;
+  padding: 10px;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.feedback-container button:disabled {
+  background: #90caf9;
+  cursor: not-allowed;
+}
+.feedback-container div[style] {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 1rem;
+}
+.star-rating {
+  display: flex;
+  gap: 6px;
+  font-size: 2rem;
+  margin-bottom: 8px;
+  justify-content: flex-start;
+}
+.star {
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s;
+  user-select: none;
+}
+.star.filled {
+  color: #FFD600;
+}
+.star:focus {
+  outline: 2px solid #1976d2;
+}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getDoctorAppointments, updateAppointment } from '../../services/api';
+import { Container, Typography, Grid, Card, CardContent, Button, Box, Stack } from '@mui/material';
 
 const Appointments = () => {
   // Replace with actual doctorId from auth/session
@@ -42,41 +43,65 @@ const Appointments = () => {
     }
   };
 
-  if (loading) return <div>Loading appointments...</div>;
-  if (error) return <div style={{ color: 'red' }}>{error}</div>;
+  if (loading) return <Container sx={{ mt: 4 }}><Typography>Loading appointments...</Typography></Container>;
+  if (error) return <Container sx={{ mt: 4 }}><Typography color="error">{error}</Typography></Container>;
 
   return (
-    <div className="doctor-appointments-container">
-      <h2>My Appointments</h2>
-      {success && <div style={{ color: 'green' }}>{success}</div>}
-      <ul>
-        {appointments.map(appt => (
-          <li key={appt.id} style={{ marginBottom: 16 }}>
-            <div>
-              <strong>Date:</strong> {appt.date} <strong>Time:</strong> {appt.time}<br />
-              <strong>Patient:</strong> {appt.patient?.name} <strong>Type:</strong> {appt.type}<br />
-              <strong>Status:</strong> {appt.status}
-              {appt.status === 'PENDING' && (
-                <>
-                  <button onClick={() => handleStatus(appt.id, 'CONFIRMED')} disabled={actionLoading === appt.id + 'CONFIRMED'}>
-                    {actionLoading === appt.id + 'CONFIRMED' ? 'Accepting...' : 'Accept'}
-                  </button>
-                  <button onClick={() => handleStatus(appt.id, 'REJECTED')} disabled={actionLoading === appt.id + 'REJECTED'}>
-                    {actionLoading === appt.id + 'REJECTED' ? 'Rejecting...' : 'Reject'}
-                  </button>
-                </>
-              )}
-              {appt.status === 'CONFIRMED' && (
-                <button onClick={() => handleStatus(appt.id, 'COMPLETED')} disabled={actionLoading === appt.id + 'COMPLETED'}>
-                  {actionLoading === appt.id + 'COMPLETED' ? 'Completing...' : 'Mark as Completed'}
-                </button>
-              )}
-            </div>
-          </li>
+    <Container maxWidth="md" sx={{ mt: 4 }}>
+      <Typography variant="h4" align="center" gutterBottom>
+        Doctor Appointments
+      </Typography>
+      {success && <Typography align="center" color="success.main" sx={{ mb: 2 }}>{success}</Typography>}
+      <Grid container spacing={3}>
+        {appointments.length === 0 ? (
+          <Grid item xs={12}>
+            <Typography align="center">No appointments found.</Typography>
+          </Grid>
+        ) : appointments.map(appt => (
+          <Grid item xs={12} sm={6} md={4} key={appt.id}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" align="center">{appt.patientName}</Typography>
+                <Typography variant="body2" align="center">Clinic: {appt.clinicName}</Typography>
+                <Typography variant="body2" align="center">Date: {appt.date}</Typography>
+                <Typography variant="body2" align="center">Time: {appt.time}</Typography>
+                <Typography variant="body2" align="center">Type: {appt.type}</Typography>
+                <Typography variant="body2" align="center">Status: {appt.status}</Typography>
+                <Stack direction="row" spacing={1} justifyContent="center" sx={{ mt: 2 }}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    disabled={actionLoading === appt.id + 'CONFIRMED' || appt.status !== 'PENDING'}
+                    onClick={() => handleStatus(appt.id, 'CONFIRMED')}
+                  >
+                    Confirm
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="success"
+                    size="small"
+                    disabled={actionLoading === appt.id + 'COMPLETED' || appt.status !== 'CONFIRMED'}
+                    onClick={() => handleStatus(appt.id, 'COMPLETED')}
+                  >
+                    Complete
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    size="small"
+                    disabled={actionLoading === appt.id + 'REJECTED' || appt.status !== 'PENDING'}
+                    onClick={() => handleStatus(appt.id, 'REJECTED')}
+                  >
+                    Reject
+                  </Button>
+                </Stack>
+              </CardContent>
+            </Card>
+          </Grid>
         ))}
-      </ul>
-      {appointments.length === 0 && <div>No appointments found.</div>}
-    </div>
+      </Grid>
+    </Container>
   );
 };
 

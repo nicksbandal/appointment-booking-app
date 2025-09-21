@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { submitFeedback } from '../../services/api';
 import { useLocation, useNavigate } from 'react-router-dom';
+import './Feedback.css';
 
 const Feedback = () => {
   const location = useLocation();
@@ -32,24 +33,47 @@ const Feedback = () => {
     }
   };
 
+  // Star rating component
+  const StarRating = ({ rating, setRating }) => (
+    <div className="star-rating">
+      {[1,2,3,4,5].map(star => (
+        <span
+          key={star}
+          className={star <= rating ? 'star filled' : 'star'}
+          onClick={() => setRating(star)}
+          role="button"
+          tabIndex={0}
+          aria-label={`Rate ${star} star${star > 1 ? 's' : ''}`}
+          onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && setRating(star)}
+        >
+          ★
+        </span>
+      ))}
+    </div>
+  );
+
   return (
     <div className="feedback-container">
       <h2>Submit Feedback</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Rating:</label>
-          <select value={rating} onChange={e => setRating(Number(e.target.value))}>
-            {[5,4,3,2,1].map(r => <option key={r} value={r}>{r}</option>)}
-          </select>
+          <StarRating rating={rating} setRating={setRating} />
         </div>
         <div>
           <label>Comments:</label>
-          <textarea value={comments} onChange={e => setComments(e.target.value)} rows={4} />
+          <textarea
+            value={comments}
+            onChange={e => setComments(e.target.value)}
+            required
+          />
         </div>
-        <button type="submit" disabled={loading}>{loading ? 'Submitting...' : 'Submit Feedback'}</button>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Submitting...' : 'Submit Feedback'}
+        </button>
       </form>
       {error && <div style={{ color: 'red' }}>{error}</div>}
-      {success && <div style={{ color: 'green' }}>Feedback submitted! Thank you.</div>}
+      {success && <div style={{ color: 'green' }}>Feedback submitted successfully!</div>}
     </div>
   );
 };

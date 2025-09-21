@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { registerPatient } from '../../services/api';
+import './Register.css';
 
 const PatientRegister = () => {
   const [form, setForm] = useState({ name: '', phone: '', mrdNumber: '' });
@@ -30,7 +31,7 @@ const PatientRegister = () => {
   return (
     <div className="register-container">
       <h2>Patient Registration</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="register-form" onSubmit={handleSubmit}>
         <div>
           <label>Name:</label>
           <input name="name" value={form.name} onChange={handleChange} required />
@@ -43,10 +44,12 @@ const PatientRegister = () => {
           <label>MRD Number:</label>
           <input name="mrdNumber" value={form.mrdNumber} onChange={handleChange} required />
         </div>
-        <button type="submit" disabled={loading}>{loading ? 'Registering...' : 'Register'}</button>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Registering...' : 'Register'}
+        </button>
       </form>
-      {error && <div style={{ color: 'red' }}>{error}</div>}
-      {success && <div style={{ color: 'green' }}>Registration successful!</div>}
+      {error && <div className="status-message" style={{ color: 'red' }}>{error}</div>}
+      {success && <div className="status-message" style={{ color: 'green' }}>Registration successful!</div>}
     </div>
   );
 };

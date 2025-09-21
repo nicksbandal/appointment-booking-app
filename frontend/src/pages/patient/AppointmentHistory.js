@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAppointmentsForPatient, cancelAppointment } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
+import './AppointmentHistory.css';
 
 const AppointmentHistory = () => {
   // Replace with actual patientId from auth/session
@@ -44,40 +45,39 @@ const AppointmentHistory = () => {
     }
   };
 
-  if (loading) return <div>Loading appointment history...</div>;
-  if (error) return <div style={{ color: 'red' }}>{error}</div>;
-
   return (
     <div className="appointment-history-container">
       <h2>Appointment History</h2>
-      {success && <div style={{ color: 'green' }}>{success}</div>}
-      <ul>
-        {appointments.map(appt => (
-          <li key={appt.id} style={{ marginBottom: 16 }}>
-            <div>
-              <strong>Date:</strong> {appt.date} <strong>Time:</strong> {appt.time}<br />
-              <strong>Clinic:</strong> {appt.clinic?.name} <strong>Doctor:</strong> {appt.doctor?.name}<br />
-              <strong>Type:</strong> {appt.type} <strong>Status:</strong> {appt.status}<br />
-              {appt.status === 'PENDING' && (
-                <>
-                  <button onClick={() => navigate(`/patient/book?clinicId=${appt.clinic?.id}&doctorId=${appt.doctor?.id}&date=${appt.date}`)}>
-                    Reschedule
-                  </button>
-                  <button onClick={() => handleCancel(appt.id)} disabled={canceling === appt.id}>
-                    {canceling === appt.id ? 'Cancelling...' : 'Cancel'}
-                  </button>
-                </>
-              )}
-              {appt.status === 'COMPLETED' && (
-                <button onClick={() => navigate(`/patient/feedback?appointmentId=${appt.id}`)}>
-                  Give Feedback
-                </button>
-              )}
-            </div>
-          </li>
-        ))}
-      </ul>
-      {appointments.length === 0 && <div>No appointments found.</div>}
+      {loading ? (
+        <div className="status-message">Loading...</div>
+      ) : error ? (
+        <div className="status-message" style={{ color: 'red' }}>{error}</div>
+      ) : (
+        <ul className="appointment-list">
+          {appointments.length === 0 ? (
+            <li className="status-message">No appointments found.</li>
+          ) : appointments.map(appt => (
+            <li key={appt.id} className="appointment-item">
+              <div className="appointment-details">
+                <div><strong>Doctor:</strong> {appt.doctor?.name || '-'}</div>
+                <div><strong>Clinic:</strong> {appt.clinic?.name || '-'}</div>
+                <div><strong>Date:</strong> {appt.date}</div>
+                <div><strong>Time:</strong> {appt.time}</div>
+                <div><strong>Type:</strong> {appt.type}</div>
+                <div><strong>Status:</strong> {appt.status}</div>
+              </div>
+              <button
+                className="cancel-btn"
+                onClick={() => handleCancel(appt.id)}
+                disabled={canceling === appt.id || !['PENDING', 'CONFIRMED'].includes(appt.status)}
+              >
+                {canceling === appt.id ? 'Cancelling...' : 'Cancel'}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+      {success && <div className="status-message" style={{ color: 'green' }}>{success}</div>}
     </div>
   );
 };
