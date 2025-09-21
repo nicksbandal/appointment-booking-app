@@ -1,8 +1,11 @@
 import axios from 'axios';
 
+// Use environment variable for base URL, fallback to relative URL
+const baseURL = process.env.REACT_APP_API_BASE_URL || '';
+
 const api = axios.create({
-  baseURL: 'http://192.168.1.2:8080', // Updated to match the network IP
-  withCredentials: false, // Changed to false to match backend CORS config
+  baseURL,
+  withCredentials: false,
 });
 
 // Patient APIs
