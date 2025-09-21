@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getClinics } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
+import './Clinics.css';
 
 const Clinics = () => {
   const [clinics, setClinics] = useState([]);
@@ -22,23 +23,23 @@ const Clinics = () => {
     fetchClinics();
   }, []);
 
-  if (loading) return <div>Loading clinics...</div>;
-  if (error) return <div style={{ color: 'red' }}>{error}</div>;
+  if (loading) return <div className="status-message">Loading clinics...</div>;
+  if (error) return <div className="status-message" style={{ color: 'red' }}>{error}</div>;
 
   return (
     <div className="clinics-list-container">
       <h2>Available Clinics</h2>
-      <ul>
+      <ul className="clinics-list">
         {clinics.map(clinic => (
-          <li key={clinic.id}>
-            <div>
+          <li key={clinic.id} className="clinic-item">
+            <div className="clinic-details">
               <strong>{clinic.name}</strong><br />
               {clinic.address}<br />
               {clinic.phone}<br />
-              <button onClick={() => navigate(`/patient/book?clinicId=${clinic.id}`)}>
-                Book Appointment
-              </button>
             </div>
+            <button className="book-btn" onClick={() => navigate(`/patient/book?clinicId=${clinic.id}`)}>
+              Book Appointment
+            </button>
           </li>
         ))}
       </ul>

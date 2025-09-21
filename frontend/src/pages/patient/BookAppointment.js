@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getClinics, getDoctorsByClinic, getAvailableSlots, bookAppointment } from '../../services/api';
 import { useLocation, useNavigate } from 'react-router-dom';
+import './BookAppointment.css';
 
 const BookAppointment = () => {
   const location = useLocation();
